@@ -10,24 +10,24 @@ def makeDiff(a, b)
 	str = a
 	curr = 0
 	result = []
-	puts diffs[0].join(',')
-	for line in diffs[0]
-		type = line[0]
-		index = line[1]
-		chars = line[2]
-		puts 'FOOOO' + type
+	for diff in diffs
+		for line in diff
+			type = line[0]
+			index = line[1]
+			chars = line[2]
 
-		if index > curr
-			s = str[curr...index]
-			result << ['=', s]
-			curr = index
-		end
+			if index > curr
+				s = str[curr...index]
+				result << ['=', s]
+				curr = index
+			end
 
-		s = chars.map{|c| c.chr}.join
-		result << [type, s]
+			s = chars.map{|c| c.chr}.join
+			result << [type, s]
 
-		if type == '-'
-			curr = index + chars.length
+			if type == '-'
+				curr = index + chars.length
+			end
 		end
 	end
 
@@ -40,9 +40,9 @@ end
 
 puts makeDiff('abc', 'abb') == [['=', 'ab'], ['-', 'c'], ['+', 'b']]
 puts makeDiff('abc def', 'abb_eef') == [['=', 'ab'], ['-', 'c d'], ['+', 'b_e'], ['=', 'ef']]
+puts makeDiff('abc def', 'abc xyz') == [['=', 'abc '], ['-', 'def'], ['+', 'xyz']]
 puts makeDiff('abc', 'xyz') == [['-', 'abc'], ['+', 'xyz']]
 puts makeDiff('abacadae', 'bacada') == [['-', 'a'], ['=', 'bacada'], ['-', 'e']]
-puts makeDiff('abacadae', 'bacada')
-puts makeDiff('abc', 'abb') == [['=', 'ab'], ['-', 'c'], ['+', 'b']]
+puts makeDiff('abclmnxyz', 'abklmkxyk') == [['=', 'ab'], ['-', 'c'], ['+', 'k'], ['=', 'lm'], ['-', 'n'], ['+', 'k'], ['=', 'xy'], ['-', 'z'], ['+', 'k']]
 
 
