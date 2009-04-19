@@ -1,5 +1,7 @@
 #!/bin/ruby
 
+require 'rubygems'
+require 'json'
 require 'diff'
 
 def makeDiff(a, b)
@@ -44,5 +46,7 @@ puts makeDiff('abc def', 'abc xyz') == [['=', 'abc '], ['-', 'def'], ['+', 'xyz'
 puts makeDiff('abc', 'xyz') == [['-', 'abc'], ['+', 'xyz']]
 puts makeDiff('abacadae', 'bacada') == [['-', 'a'], ['=', 'bacada'], ['-', 'e']]
 puts makeDiff('abclmnxyz', 'abklmkxyk') == [['=', 'ab'], ['-', 'c'], ['+', 'k'], ['=', 'lm'], ['-', 'n'], ['+', 'k'], ['=', 'xy'], ['-', 'z'], ['+', 'k']]
+
+puts JSON.generate(makeDiff('abc def', 'abb_eef'))
 
 
