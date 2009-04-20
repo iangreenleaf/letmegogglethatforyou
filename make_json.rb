@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 
 require 'rubygems'
 require 'json'
@@ -40,13 +40,66 @@ def makeDiff(a, b)
 	return result
 end
 
-puts makeDiff('abc', 'abb') == [['=', 'ab'], ['-', 'c'], ['+', 'b']]
-puts makeDiff('abc def', 'abb_eef') == [['=', 'ab'], ['-', 'c d'], ['+', 'b_e'], ['=', 'ef']]
-puts makeDiff('abc def', 'abc xyz') == [['=', 'abc '], ['-', 'def'], ['+', 'xyz']]
-puts makeDiff('abc', 'xyz') == [['-', 'abc'], ['+', 'xyz']]
-puts makeDiff('abacadae', 'bacada') == [['-', 'a'], ['=', 'bacada'], ['-', 'e']]
-puts makeDiff('abclmnxyz', 'abklmkxyk') == [['=', 'ab'], ['-', 'c'], ['+', 'k'], ['=', 'lm'], ['-', 'n'], ['+', 'k'], ['=', 'xy'], ['-', 'z'], ['+', 'k']]
+def splitWords(diffArr)
+	newArr = []
+	for delta in diffArr
+		spaceFirst = delta[1][0] == ' '
+		strings = delta[1].split(' ')
+		newDelta = strings.map {|s| [delta[0], ' ' + s]}
+		unless spaceFirst then newDelta[0][1].strip! end
+		newArr.concat newDelta
+	end
+	return newArr
+end
 
-puts JSON.generate(makeDiff('abc def', 'abb_eef'))
+def makeWords(diffArr)
 
+	diffArr = splitWords(diffArr)
+
+	wordQueue = []
+	firstTry = ''
+	secondTry = ''
+	prefix = ''
+	noMistakes = true
+	for delta in diffArr
+
+		type = delta[0]
+		str = delta[1]
+
+		if str[0] == ' '
+			wordQueue << [prefix, firstTry, secondTry]
+			noMistakes = true
+			firstTry = ''
+			secondTry = ''
+			prefix = ''
+		end
+
+		if type == '=' && noMistakes
+			prefix += str
+		elsif type == '='
+			firstTry += str
+			secondTry += str
+		elsif type == '-'
+			noMistakes = false
+			firstTry += str
+		elsif type == '+'
+			noMistakes = false
+			secondTry += str
+		end
+	end
+
+	wordQueue << [prefix, firstTry, secondTry]
+
+	return wordQueue
+
+end
+
+#puts makeDiff('abc', 'abb') == [['=', 'ab'], ['-', 'c'], ['+', 'b']]
+#puts makeDiff('abc def', 'abb_eef') == [['=', 'ab'], ['-', 'c d'], ['+', 'b_e'], ['=', 'ef']]
+#puts makeDiff('abc def', 'abc xyz') == [['=', 'abc '], ['-', 'def'], ['+', 'xyz']]
+#puts makeDiff('abc', 'xyz') == [['-', 'abc'], ['+', 'xyz']]
+#puts makeDiff('abacadae', 'bacada') == [['-', 'a'], ['=', 'bacada'], ['-', 'e']]
+#puts makeDiff('abclmnxyz', 'abklmkxyk') == [['=', 'ab'], ['-', 'c'], ['+', 'k'], ['=', 'lm'], ['-', 'n'], ['+', 'k'], ['=', 'xy'], ['-', 'z'], ['+', 'k']]
+
+#puts JSON.generate(makeDiff('abc def', 'abb_eef'))
 
