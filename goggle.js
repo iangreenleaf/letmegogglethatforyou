@@ -6,20 +6,51 @@ function startTyping() {
 	enterSearch(searchString, 0, 0);
 }
 
-function typeString(string, index){
-	var chr = string.substr(0, index + 1);
-	textField.val(textField.val() + chr);
+function typeString(string, index, c){
+	//alert('Typing ' + string + ', ' + index);
 	if (index < string.length) {
-		setTimeout(function(){ typeString(string, index + 1); }, Math.random() * 240);
+		var chr = string.substr(index, 1);
+		textField.val(textField.val() + chr);
+		setTimeout(function(){ typeString(string, index + 1, c); }, Math.random() * 360);
 	}
 	else {
+		c();
 	}
 }
 
-function backspace() {
+function backspace(length, c) {
+	//alert('Del ' + length);
+	if (length > 0) {
+		textField.val(textField.val().substr(0, textField.val().length - 1));
+		setTimeout(function(){ backspace(length - 1, c); }, Math.random() * 240);
+	} else {
+		setTimeout(c, 400);
+	}
 }
 
 function enterSearch(myArray, arrayIndex, strIndex) {
+
+	if (arrayIndex >= myArray.length) {
+		return;
+	}
+
+	prefix = myArray[arrayIndex][0];
+	del = myArray[arrayIndex][1];
+	add = myArray[arrayIndex][2];
+
+	var waitAfter = 70 * Math.min(del.length, 10)
+
+	typeString(prefix, 0, function() {
+			typeString(del, 0, function() {
+				setTimeout(function() {
+					backspace(del.length, function() {
+						typeString(add, 0, function(){
+							enterSearch(myArray, arrayIndex + 1, 0);
+							});
+						});
+					}, waitAfter);
+				});
+			});
 }
 
 function enterSearch_old(myArray, arrayIndex, strIndex) {
