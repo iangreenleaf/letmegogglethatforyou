@@ -43,7 +43,7 @@ end
 def splitWords(diffArr)
 	newArr = []
 	for delta in diffArr
-		spaceFirst = delta[1][0] == ' '
+		spaceFirst = delta[1] != delta[1].lstrip
 		strings = delta[1].split(' ')
 		newDelta = strings.map {|s| [delta[0], ' ' + s]}
 		unless spaceFirst then newDelta[0][1].strip! end
@@ -66,7 +66,7 @@ def makeWords(diffArr)
 		type = delta[0]
 		str = delta[1]
 
-		if str[0] == ' '
+		if str != str.lstrip
 			wordQueue << [prefix, firstTry, secondTry]
 			noMistakes = true
 			firstTry = ''
