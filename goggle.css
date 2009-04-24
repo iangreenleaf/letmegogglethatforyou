@@ -7,8 +7,39 @@
 	font-size: 1.5em;
 }
 .logo #goggle_logo {
-	margin-top: 1em;
+	position: relative;
+	top: 90px;
+	margin-top: -70px;
 }
 .logo span {
 	padding-bottom: 100px;
 }
+
+.query {
+	margin-top: 90px;
+}
+
+/* Wouldn't it be nice if we could make a centered elastic
+   layout without using a table? Le sigh. */
+table {
+	margin: auto;
+}
+
+table td {
+	text-align: right;
+}
+
+.prompt {
+	clear: both;
+}
+
+.prompt label {
+	width: 8em;
+	display: block;
+	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
+}
+
+.prompt input {
+	display: block;
+}
+
