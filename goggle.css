@@ -1,6 +1,9 @@
 .main {
 	text-align: center;
 }
+.main h1 {
+	display: none;
+}
 .logo {
 	font-family: arial, sans-serif;
 	color: #444;
