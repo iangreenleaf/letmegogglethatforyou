@@ -53,3 +53,20 @@ table td {
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	font-size: 1.15em;
 }
+
+.ads a {
+	margin-left: 1em;
+}
+
+.ads .sponsored_by {
+	display: block;
+}
+
+.ads a img {
+	border: 1px solid #BBB;
+	height: 140px;
+	width: 88px;
+}
+.ads a:hover img {
+	border: 1px solid #888;
+}
