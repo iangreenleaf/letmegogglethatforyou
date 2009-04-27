@@ -1,6 +1,18 @@
 $(document).ready(startTyping);
 
 function startTyping() {
+	// Give the ads a nice mouseover opacity change
+	ads = $(".ads a");
+	ads.css("opacity", "0.8");
+	ads.hover(
+		function () {
+			$(this).css("opacity", "1.0");
+		},
+		function () {
+			$(this).css("opacity", "0.8");
+		}
+		);
+
 	// Clear out the text field
 	textField = $("#q");
 	textField.attr('value', '');
