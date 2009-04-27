@@ -5,7 +5,7 @@
 	display: none;
 }
 .logo {
-	font-family: arial, sans-serif;
+	font-family: Arial, sans-serif;
 	color: #444;
 	font-size: 1.5em;
 }
@@ -19,7 +19,12 @@
 }
 
 .query {
+	font-family: Arial, sans-serif;
 	margin-top: 90px;
+}
+
+.query label {
+	color: #444;
 }
 
 /* Wouldn't it be nice if we could make a centered elastic
@@ -51,19 +56,21 @@ table td {
 	width: 375px;
 	height: 90px;
 	margin: auto;
-	margin-top: 3em;
+	margin-top: 2em;
 	padding-top: 1.3em;
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	font-size: 1.15em;
 }
 
+.ads {
+	margin-top: 3em;
+}
 .sponsored_by {
 	text-indent: -9999px;
 	background: url("sponsored_by.png") #FFF no-repeat;
 	width: 93px;
 	height: 28px;
 	margin: auto;
-	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 .ads a {
@@ -81,4 +88,19 @@ table td {
 }
 .ads a:hover img {
 	border: 1px solid #888;
+}
+
+.credits {
+	margin-top: 2em;
+	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
+	border-top: 1px solid #DDD;
+}
+h2.about {
+	margin-top: 0.4em;
+	font-size: 1.1em;
+	color: #999;
+}
+.credits p {
+	font-size: 0.9em;
+	color: #666;
 }

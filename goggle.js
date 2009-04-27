@@ -13,6 +13,18 @@ function startTyping() {
 		}
 		);
 
+	// Hide the about section until someone clicks
+	aboutWord = $("h2.about span");
+	aboutText = $(".credits p");
+	aboutText.hide();
+	aboutWord.hover(
+		function() {
+			$(this).css("cursor", "pointer");
+		},
+		function() {}
+		);
+	aboutWord.click(function() { aboutText.slideToggle("slow"); });
+
 	// Clear out the text field
 	textField = $("#q");
 	textField.attr('value', '');
