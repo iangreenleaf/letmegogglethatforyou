@@ -57,6 +57,15 @@ table td {
 	font-size: 1.15em;
 }
 
+.sponsored_by {
+	text-indent: -9999px;
+	background: url("sponsored_by.png") #FFF no-repeat;
+	width: 93px;
+	height: 28px;
+	margin: auto;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
 .ads a {
 	margin-left: 1em;
 }
