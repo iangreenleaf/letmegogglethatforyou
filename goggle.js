@@ -12,6 +12,8 @@ function startTyping() {
 			$(this).css("opacity", "0.8");
 		}
 		);
+	amazonLink = $(".ads .brand_logo");
+	amazonLink.css("opacity", "0.6");
 
 	// Hide the about section until someone clicks
 	aboutWord = $("h2.about span");

@@ -73,8 +73,19 @@ table td {
 	margin: auto;
 	margin-bottom: 0.5em;
 }
+
 .ads a {
 	margin-left: 1em;
+}
+.ads a.first {
+	margin-left: 0em;
+}
+
+.ads .brand_logo {
+	display: block;
+	margin: auto;
+	border: none;
+	margin-top: 0.3em;
 }
 
 .ads .sponsored_by {
