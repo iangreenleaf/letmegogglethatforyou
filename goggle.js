@@ -14,6 +14,14 @@ function startTyping() {
 		);
 	amazonLink = $(".ads .brand_logo");
 	amazonLink.css("opacity", "0.6");
+	amazonLink.hover(
+		function () {
+			$(this).css("opacity", "1.0");
+		},
+		function () {
+			$(this).css("opacity", "0.6");
+		}
+		);
 
 	// Hide the about section until someone clicks
 	aboutWord = $("h2.about span");
@@ -21,9 +29,11 @@ function startTyping() {
 	aboutText.hide();
 	aboutWord.hover(
 		function() {
-			$(this).css("cursor", "pointer");
+			$(this).css("cursor", "pointer").css("color", "#666");
 		},
-		function() {}
+		function() {
+			$(this).css("cursor", "pointer").css("color", "#999");
+		}
 		);
 	aboutWord.click(function() { aboutText.slideToggle("slow"); });
 
