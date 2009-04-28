@@ -37,11 +37,31 @@ function startTyping() {
 		);
 	aboutWord.click(function() { aboutText.slideToggle("slow"); });
 
-	// Clear out the text field
-	textField = $("#q");
-	textField.attr('value', '');
-	// Start entering text
-	enterSearch(searchString, 0, 0);
+	// If the variable is not defined, we're on step one
+	if (typeof(window['searchString']) == 'undefined') {
+		buttons = $('#btnG, #btnI');
+		buttons.click(function() {
+			// Get the options entered
+			queryString = $("#setup_form").serialize();
+			// If they clicked I'm Feeling Lucky, add that to the string
+			if ($(this).attr("id") == 'btnI') {
+				queryString += '&l=1';
+			}
+			// Build the whole URL
+			href = 'http://letmegogglethatforyou.com?' + queryString;
+			// Throw up a box with that url
+			$(".output").empty().append($('<input readonly="readonly" value="' + href + '" size="50" class="url" >'));
+			$(".output input.url").focus().select();
+			$(".infobox").text("Now use the link below for great justice.");
+			return false;
+		});
+	} else {
+		// Clear out the text field
+		textField = $("#q");
+		textField.attr('value', '');
+		// Start entering text
+		enterSearch(searchString, 0, 0);
+	}
 }
 
 // Enters a string one character at a time into the text field

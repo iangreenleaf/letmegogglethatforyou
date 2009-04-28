@@ -62,6 +62,12 @@ table td {
 	font-size: 1.15em;
 }
 
+input.url {
+	border: 1px solid #b7b2eb;
+	font-size: 1em;
+	line-height: 1em;
+}
+
 .ads {
 	margin-top: 3em;
 }

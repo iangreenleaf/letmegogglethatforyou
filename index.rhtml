@@ -24,7 +24,7 @@
 			cgi = CGI.new
 			if cgi['i'].empty? then
 			%>
-			<form action="" method="get">
+			<form action="" method="get" id="setup_form">
 				<div>
 					<table>
 						<tr>
@@ -36,19 +36,23 @@
 							<td><input type="text" name="c" id="c" size="55" ></td>
 						</tr>
 					</table>
-					<input type="submit" value="Google Search" name="btnG" >
-					<input type="submit" value="I'm Feeling Lucky" name="btnI" >
+					<input type="submit" value="Google Search" name="btnG" id="btnG" >
+					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" >
 				</div>
 			</form>
 			<%
 			else
 			%>
+			<script type="text/javascript">
+				//searchString = <%=  JSON.generate(makeDiff('abcdefg', 'abadafg')) %>;
+				searchString = <%= JSON.generate(makeWords(makeDiff('abcdefg foo bar baz', 'abadafg foo baz bi'))) %>;
+			</script>
 			<form action="http://www.google.com/search" method="get">
 				<div>
 					<input type="text" name="q" id="q" size="55" >
 					<br >
-					<input type="submit" value="Google Search" name="btnG" >
-					<input type="submit" value="I'm Feeling Lucky" name="btnI" >
+					<input type="submit" value="Google Search" name="btnG" id="btnG" >
+					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" >
 				</div>
 			</form>
 			<%
@@ -56,6 +60,7 @@
 			%>
 			</div>
 			<div class="infobox">Stop and read what you just wrote.</div>
+			<div class="output"></div>
 
 			<div class="ads">
 				<h2 class="sponsored_by">Sponsored by</h2>
@@ -74,9 +79,5 @@
 				<p class="disclaimer">Not associated with nor endorsed by Google&trade; in any way. The original Google logo is a trademark of Google, Inc.</p>
 			</div>
 		</div>
-		<script type="text/javascript">
-			//searchString = <%=  JSON.generate(makeDiff('abcdefg', 'abadafg')) %>;
-			searchString = <%= JSON.generate(makeWords(makeDiff('abcdefg foo bar baz', 'abadafg foo baz bi'))) %>;
-		</script>
 	</body>
 </html>
