@@ -57,9 +57,26 @@ table td {
 	height: 90px;
 	margin: auto;
 	margin-top: 2em;
-	padding-top: 1.3em;
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	font-size: 1.15em;
+
+	display: table;
+}
+
+.infobox div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* This rule exists because IE sucks */
+.infobox span {
+	display: inline-block;
+}
+/* Ditto */
+.ie_align {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
 }
 
 input.url {
