@@ -1,7 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
-<% require 'make_json' %>
-<% require 'cgi' %>
+<%
+ENV['GEM_PATH'] = '/home/youngian/.gem/ruby/1.8:/usr/lib/ruby/gems/1.8'
+require 'make_json'
+require 'cgi'
+%>
 <html>
 	<head>
 		<meta content='text/html;charset=UTF-8' http-equiv='content-type'>
