@@ -59,8 +59,19 @@ function startTyping() {
 		// Clear out the text field
 		textField = $("#q");
 		textField.attr('value', '');
-		// Start entering text
-		enterSearch(searchString, 0, 0);
+
+		/* Animate the mouse cursor */
+		fakeMouse = $("#cursor");
+		fakeMouse.show();
+		fakeMouse.animate({
+			top: textField.position().top  + 15,
+			left: textField.position().left + 10
+		}, 1500, 'swing', function(){
+			textField.focus();
+			fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { /*fixSafariRenderGlitch();*/ });
+			// Start entering text
+			enterSearch(searchString, 0, 0);
+		});
 	}
 }
 
