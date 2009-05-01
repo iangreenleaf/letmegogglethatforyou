@@ -57,8 +57,8 @@ require 'cgi'
 				<div>
 					<input type="text" name="q" id="q" size="55" >
 					<br >
-					<input type="submit" value="Google Search" name="btnG" id="btnG" >
-					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" >
+					<input type="submit" value="Google Search" name="btnG" id="btnG" <%= if cgi['l'] == 1 then 'class="clickme"' end %>>
+					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" <%= if cgi['l'] != 1 then 'class="clickme"' end %>>
 				</div>
 			</form>
 			</div>

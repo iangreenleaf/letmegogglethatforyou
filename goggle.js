@@ -68,11 +68,26 @@ function startTyping() {
 			left: textField.position().left + 10
 		}, 1500, 'swing', function(){
 			textField.focus();
-			fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { /*fixSafariRenderGlitch();*/ });
+			fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { fixSafariRenderGlitch(); });
 			// Start entering text
-			enterSearch(searchString, 0, 0);
+			enterSearch(searchString, 0, 0, doneTyping);
 		});
 	}
+}
+
+function doneTyping() {
+	button = $(".clickme");
+	fakeMouse.animate({
+		top: button.position().top  + 10,
+		left: button.position().left + 30
+	}, 2000, 'swing', function(){
+		button.click();
+	});
+}
+
+/* I'll trust that the LMGTFY guys know what they're doing */
+function fixSafariRenderGlitch() {
+	if ($.browser.safari) textField.blur().focus();
 }
 
 // Enters a string one character at a time into the text field
@@ -106,11 +121,12 @@ function backspace(length, c) {
 }
 
 // Loop through the diff array, entering the text as we go
-// Accepts array MYARRAY, int ARRAYINDEX, int STRINDEX
-function enterSearch(myArray, arrayIndex, strIndex) {
+// Accepts array MYARRAY, int ARRAYINDEX, int STRINDEX, function c
+function enterSearch(myArray, arrayIndex, strIndex, c) {
 
 	// If we hit the end of the array, we're done
 	if (arrayIndex >= myArray.length) {
+		c();
 		return;
 	}
 
@@ -133,7 +149,7 @@ function enterSearch(myArray, arrayIndex, strIndex) {
 				setTimeout(function() {
 					backspace(del.length, function() {
 						typeString(add, 0, function(){
-							enterSearch(myArray, arrayIndex + 1, 0);
+							enterSearch(myArray, arrayIndex + 1, 0, c);
 							});
 						});
 					}, waitAfter);
