@@ -56,6 +56,9 @@ function startTyping() {
 			return false;
 		});
 	} else {
+
+		setMessage(1);
+
 		// Clear out the text field
 		textField = $("#q");
 		textField.attr('value', '');
@@ -71,18 +74,30 @@ function startTyping() {
 			fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { fixSafariRenderGlitch(); });
 			// Start entering text
 			enterSearch(searchString, 0, 0, doneTyping);
+			setMessage(2);
 		});
 	}
 }
 
 function doneTyping() {
+	setMessage(3);
 	button = $(".clickme");
 	fakeMouse.animate({
 		top: button.position().top  + 10,
 		left: button.position().left + 30
 	}, 2000, 'swing', function(){
-		button.click();
+		button.focus();
+		setTimeout(function() { button.click(); }, 200);
 	});
+}
+
+function setMessage(key) {
+	$(".infobox .text").text(messageArray['step' + key]);
+}
+messageArray = {
+	step1 : 'Stop and read what you just wrote.',
+	step2: 'Does it make any sense at all?',
+	step3: 'Spellcheck is no excuse.'
 }
 
 /* I'll trust that the LMGTFY guys know what they're doing */
