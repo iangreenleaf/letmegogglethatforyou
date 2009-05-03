@@ -1,10 +1,11 @@
 #!/usr/bin/ruby
 
-require 'rubygems'
-require 'json'
 require 'diff'
 
 def makeDiff(a, b)
+	# For some reason we need to make copies here or Diff panics
+	a = String.new(a)
+	b = String.new(b)
 
 	d = Diff.new(a, b)
 	diffs = d.compactdiffs

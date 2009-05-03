@@ -2,6 +2,8 @@
 "http://www.w3.org/TR/html4/strict.dtd">
 <%
 ENV['GEM_PATH'] = '/home/youngian/.gem/ruby/1.8:/usr/lib/ruby/gems/1.8'
+require 'rubygems'
+require 'json'
 require 'make_json'
 require 'cgi'
 %>
@@ -26,7 +28,23 @@ require 'cgi'
 			<img id="cursor" src="cursor.png" style="display: none;" >
 			<%
 			cgi = CGI.new
-			if cgi['i'].empty? then
+			if cgi.has_key?('i') and cgi.has_key?('c') then
+			%>
+			<script type="text/javascript">
+				searchString = <%= JSON.generate(makeWords(makeDiff(cgi['i'], cgi['c']))) %>;
+			</script>
+			<form action="http://www.google.com/search" method="get">
+				<div>
+					<input type="text" name="q" id="q" size="55" >
+					<br >
+					<input type="submit" value="Google Search" name="btnG" id="btnG" <% if not cgi.has_key?('l') then print 'class="clickme"' end %>>
+					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" <% if cgi.has_key?('l') then print 'class="clickme"' end %>>
+				</div>
+			</form>
+			</div>
+			<div class="infobox"><div><span class="ie_align"></span><span class="text">Please enable Javascript to be mocked properly.</span></div></div>
+			<%
+			else
 			%>
 			<form action="" method="get" id="setup_form">
 				<div>
@@ -46,23 +64,6 @@ require 'cgi'
 			</form>
 			</div>
 			<div class="infobox"><div><span class="ie_align"></span><span class="text">First enter it as it was spelled.<br>Then enter how it <strong>should</strong> have been spelled.</span></div></div>
-			<%
-			else
-			%>
-			<script type="text/javascript">
-				//searchString = <%=  JSON.generate(makeDiff('abcdefg', 'abadafg')) %>;
-				searchString = <%= JSON.generate(makeWords(makeDiff('abcdefg foo bar baz', 'abadafg foo baz bi'))) %>;
-			</script>
-			<form action="http://www.google.com/search" method="get">
-				<div>
-					<input type="text" name="q" id="q" size="55" >
-					<br >
-					<input type="submit" value="Google Search" name="btnG" id="btnG" <%= if cgi['l'] == 1 then 'class="clickme"' end %>>
-					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" <%= if cgi['l'] != 1 then 'class="clickme"' end %>>
-				</div>
-			</form>
-			</div>
-			<div class="infobox"><div><span class="ie_align"></span><span class="text">Please enable Javascript to be mocked properly.</span></div></div>
 			<%
 			end
 			%>
