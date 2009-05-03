@@ -1,6 +1,29 @@
-$(document).ready(startTyping);
+$(document).ready(function() {
+	initPage();
+	// If the variable is not defined, we're on step one
+	if (typeof(window['searchString']) == 'undefined') {
+		buttons = $('#btnG, #btnI');
+		buttons.click(function() {
+			// Get the options entered
+			queryString = $("#setup_form").serialize();
+			// If they clicked I'm Feeling Lucky, add that to the string
+			if ($(this).attr("id") == 'btnI') {
+				queryString += '&l=1';
+			}
+			// Build the whole URL
+			href = 'http://letmegogglethatforyou.com?' + queryString;
+			// Throw up a box with that url
+			$(".output").empty().append($('<input readonly="readonly" value="' + href + '" size="50" class="url" >'));
+			$(".output input.url").focus().select();
+			$(".infobox").text("Now use the link below for great justice.");
+			return false;
+		});
+	} else {
+		startTyping();
+	}
+});
 
-function startTyping() {
+function initPage() {
 	// Give the ads a nice mouseover opacity change
 	ads = $(".ads a");
 	ads.css("opacity", "0.8");
@@ -37,46 +60,28 @@ function startTyping() {
 		);
 	aboutWord.click(function() { aboutText.slideToggle("slow"); });
 
-	// If the variable is not defined, we're on step one
-	if (typeof(window['searchString']) == 'undefined') {
-		buttons = $('#btnG, #btnI');
-		buttons.click(function() {
-			// Get the options entered
-			queryString = $("#setup_form").serialize();
-			// If they clicked I'm Feeling Lucky, add that to the string
-			if ($(this).attr("id") == 'btnI') {
-				queryString += '&l=1';
-			}
-			// Build the whole URL
-			href = 'http://letmegogglethatforyou.com?' + queryString;
-			// Throw up a box with that url
-			$(".output").empty().append($('<input readonly="readonly" value="' + href + '" size="50" class="url" >'));
-			$(".output input.url").focus().select();
-			$(".infobox").text("Now use the link below for great justice.");
-			return false;
-		});
-	} else {
+}
+function startTyping() {
 
-		setMessage(1);
+	setMessage(1);
 
-		// Clear out the text field
-		textField = $("#q");
-		textField.attr('value', '');
+	// Clear out the text field
+	textField = $("#q");
+	textField.attr('value', '');
 
-		/* Animate the mouse cursor */
-		fakeMouse = $("#cursor");
-		fakeMouse.show();
-		fakeMouse.animate({
-			top: textField.position().top  + 15,
-			left: textField.position().left + 10
-		}, 1500, 'swing', function(){
-			textField.focus();
-			fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { fixSafariRenderGlitch(); });
-			// Start entering text
-			enterSearch(searchString, 0, 0, doneTyping);
-			setMessage(2);
-		});
-	}
+	// Animate the mouse cursor
+	fakeMouse = $("#cursor");
+	fakeMouse.show();
+	fakeMouse.animate({
+		top: textField.position().top  + 15,
+		left: textField.position().left + 10
+	}, 1500, 'swing', function(){
+		textField.focus();
+		fakeMouse.animate({ top: "+=18px", left: "+=10px" }, 'fast', function() { fixSafariRenderGlitch(); });
+		// Start entering text
+		enterSearch(searchString, 0, 0, doneTyping);
+		setMessage(2);
+	});
 }
 
 function doneTyping() {
