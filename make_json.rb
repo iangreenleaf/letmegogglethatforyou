@@ -4,8 +4,8 @@ require 'diff'
 
 def makeDiff(a, b)
 	# For some reason we need to make copies here or Diff panics
-	a = String.new(a)
-	b = String.new(b)
+	a = String.new(a.strip)
+	b = String.new(b.strip)
 
 	d = Diff.new(a, b)
 	diffs = d.compactdiffs
@@ -44,10 +44,17 @@ end
 def splitWords(diffArr)
 	newArr = []
 	for delta in diffArr
+		spaceOnly = delta[1].strip.length == 0
 		spaceFirst = delta[1] != delta[1].lstrip
-		strings = delta[1].split(' ')
+		spaceLast = (( delta[1] != delta[1].rstrip ) and not spaceOnly )
+		if spaceOnly
+			strings = ['']
+		else
+			strings = delta[1].split(' ')
+		end
 		newDelta = strings.map {|s| [delta[0], ' ' + s]}
-		unless spaceFirst then newDelta[0][1].strip! end
+		unless spaceFirst then newDelta[0][1].lstrip! end
+		if spaceLast then newDelta[newDelta.length-1][1] += ' ' end
 		newArr.concat newDelta
 	end
 	return newArr
@@ -94,13 +101,3 @@ def makeWords(diffArr)
 	return wordQueue
 
 end
-
-#puts makeDiff('abc', 'abb') == [['=', 'ab'], ['-', 'c'], ['+', 'b']]
-#puts makeDiff('abc def', 'abb_eef') == [['=', 'ab'], ['-', 'c d'], ['+', 'b_e'], ['=', 'ef']]
-#puts makeDiff('abc def', 'abc xyz') == [['=', 'abc '], ['-', 'def'], ['+', 'xyz']]
-#puts makeDiff('abc', 'xyz') == [['-', 'abc'], ['+', 'xyz']]
-#puts makeDiff('abacadae', 'bacada') == [['-', 'a'], ['=', 'bacada'], ['-', 'e']]
-#puts makeDiff('abclmnxyz', 'abklmkxyk') == [['=', 'ab'], ['-', 'c'], ['+', 'k'], ['=', 'lm'], ['-', 'n'], ['+', 'k'], ['=', 'xy'], ['-', 'z'], ['+', 'k']]
-
-#puts JSON.generate(makeDiff('abc def', 'abb_eef'))
-
