@@ -142,6 +142,12 @@ h2.about {
 	font-size: 0.8em;
 	color: #999;
 }
+.credits p.disclaimer {
+	margin-bottom: 0em;
+}
+.credits p.sources {
+	margin-top: 0.2em;
+}
 
 #cursor {
 	position: absolute;
