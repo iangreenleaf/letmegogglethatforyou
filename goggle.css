@@ -1,28 +1,33 @@
+/* Center most stuff */
 .main {
 	text-align: center;
 }
+/* Hide the main title, we're gonna show the logo instead */
 .main h1 {
 	display: none;
 }
+/* Style the title text */
 .logo {
 	font-family: Arial, sans-serif;
 	color: #444;
 	font-size: 1.5em;
 }
+/* Give the logo some negative space to make it appear vertically centered */
 .logo #goggle_logo {
 	position: relative;
 	top: 90px;
 	margin-top: -70px;
 }
+/* And then make sure it has enough space underneath */
 .logo span {
 	padding-bottom: 100px;
 }
 
+/* The search box */
 .query {
 	font-family: Arial, sans-serif;
 	margin-top: 90px;
 }
-
 .query label {
 	color: #444;
 }
@@ -32,25 +37,11 @@
 table {
 	margin: auto;
 }
-
 table td {
 	text-align: right;
 }
 
-.prompt {
-	clear: both;
-}
-
-.prompt label {
-	width: 8em;
-	display: block;
-	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
-}
-
-.prompt input {
-	display: block;
-}
-
+/* Set up the message box */
 .infobox {
 	background: url("box.png") no-repeat;
 	width: 372px;
@@ -59,10 +50,10 @@ table td {
 	margin-top: 2em;
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	font-size: 1.10em;
-
+	/* This rule is for vertical centering */
 	display: table;
 }
-
+/* Center text inside the box vertically */
 .infobox div {
 	display: table-cell;
 	vertical-align: middle;
@@ -79,15 +70,18 @@ table td {
 	vertical-align: middle;
 }
 
+/* The URL box that pops up after you submit */
 input.url {
 	border: 1px solid #b7b2eb;
 	font-size: 1em;
 	line-height: 1em;
 }
 
+/* The box with Amazon ads */
 .ads {
 	margin-top: 3em;
 }
+/* Replace the "sponsored by" text with an image */
 .sponsored_by {
 	text-indent: -9999px;
 	background: url("sponsored_by.png") #FFF no-repeat;
@@ -97,6 +91,7 @@ input.url {
 	margin-bottom: 0.5em;
 }
 
+/* Leave some space in between ad links */
 .ads a {
 	margin-left: 1em;
 }
@@ -104,17 +99,7 @@ input.url {
 	margin-left: 0em;
 }
 
-.ads .brand_logo {
-	display: block;
-	margin: auto;
-	border: none;
-	margin-top: 0.3em;
-}
-
-.ads .sponsored_by {
-	display: block;
-}
-
+/* The ad links */
 .ads a img {
 	border: 1px solid #AAA;
 	height: 100px;
@@ -124,6 +109,16 @@ input.url {
 	border: 1px solid #888;
 }
 
+
+/* The Amazon logo link */
+.ads .brand_logo {
+	display: block;
+	margin: auto;
+	border: none;
+	margin-top: 0.3em;
+}
+
+/* The "About" section */
 .credits {
 	margin-top: 2em;
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
@@ -154,6 +149,7 @@ h2.about {
 	margin-top: 0.2em;
 }
 
+/* The fake cursor image */
 #cursor {
 	position: absolute;
 	top: 100px;
