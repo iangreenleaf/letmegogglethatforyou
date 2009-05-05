@@ -35,7 +35,7 @@ if cgi.has_key?('i') and cgi.has_key?('c') then
 			</script>
 			<form action="http://www.google.com/search" method="get">
 				<div>
-					<input type="text" name="q" id="q" size="55" >
+					<input type="text" name="q" id="q" size="55" value="<%= cgi['c'] %>">
 					<br >
 					<input type="submit" value="Google Search" name="btnG" id="btnG" <% if not cgi.has_key?('l') then print 'class="clickme"' end %>>
 					<input type="submit" value="I'm Feeling Lucky" name="btnI" id="btnI" <% if cgi.has_key?('l') then print 'class="clickme"' end %>>
