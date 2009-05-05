@@ -24,9 +24,18 @@ $(document).ready(function() {
 });
 
 function initPage() {
-	// Give the ads a nice mouseover opacity change
+
+	// Fade the ads in one after another
 	ads = $(".ads a");
-	ads.css("opacity", "0.8");
+	ads.css("opacity", "0");
+	currAd = 0;
+	function adShow() {
+		ads.eq(currAd).fadeTo("fast", "0.8", adShow);
+		currAd++;
+	}
+	adShow();
+
+	// Give the ads a nice mouseover opacity change
 	ads.hover(
 		function () {
 			$(this).css("opacity", "1.0");
