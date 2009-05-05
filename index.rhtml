@@ -26,10 +26,10 @@ require 'cgi'
 			</div>
 			<div class="query">
 			<img id="cursor" src="cursor.png" style="display: none;" >
-			<%
-			cgi = CGI.new
-			if cgi.has_key?('i') and cgi.has_key?('c') then
-			%>
+<%
+cgi = CGI.new
+if cgi.has_key?('i') and cgi.has_key?('c') then
+%>
 			<script type="text/javascript">
 				searchString = <%= JSON.generate(makeWords(makeDiff(cgi['i'], cgi['c']))) %>;
 			</script>
@@ -43,9 +43,9 @@ require 'cgi'
 			</form>
 			</div>
 			<div class="infobox"><div><span class="ie_align"></span><span class="text">Please enable Javascript to be mocked properly.</span></div></div>
-			<%
-			else
-			%>
+<%
+else
+%>
 			<form action="" method="get" id="setup_form">
 				<div>
 					<table>
@@ -64,9 +64,9 @@ require 'cgi'
 			</form>
 			</div>
 			<div class="infobox"><div><span class="ie_align"></span><span class="text">First enter it as it was spelled.<br>Then enter how it <strong>should</strong> have been spelled.</span></div></div>
-			<%
-			end
-			%>
+<%
+end
+%>
 			<div class="output"></div>
 
 			<div class="ads">
