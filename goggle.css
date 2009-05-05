@@ -129,6 +129,11 @@ input.url {
 	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	border-top: 1px solid #DDD;
 }
+/* IE6 has some horrible non-aliasing happening, so just skip down the stack */
+* html .credits {
+	font-family: Times New Roman, serif;
+}
+
 h2.about {
 	margin-top: 0.4em;
 	font-size: 1.1em;
