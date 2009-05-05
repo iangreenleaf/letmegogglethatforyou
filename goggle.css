@@ -138,6 +138,10 @@ h2.about {
 	font-size: 0.9em;
 	color: #666;
 }
+.credits p.disclaimer, .credits p.sources {
+	font-size: 0.8em;
+	color: #999;
+}
 
 #cursor {
 	position: absolute;
