@@ -25,15 +25,13 @@ $(document).ready(function() {
 
 function initPage() {
 
-	// Fade the ads in one after another
 	ads = $(".ads a");
-	ads.css("opacity", "0");
-	currAd = 0;
-	function adShow() {
-		ads.eq(currAd).fadeTo("fast", "0.8", adShow);
-		currAd++;
-	}
-	adShow();
+	amazonLink = $(".ads .brand_logo");
+
+	// Fade the ads and Amazon logo in
+	ads.add(amazonLink).css("opacity", "0");
+	ads.fadeTo("slow", "0.8");
+	amazonLink.fadeTo("slow", "0.6");
 
 	// Give the ads a nice mouseover opacity change
 	ads.hover(
@@ -44,8 +42,6 @@ function initPage() {
 			$(this).css("opacity", "0.8");
 		}
 		);
-	amazonLink = $(".ads .brand_logo");
-	amazonLink.css("opacity", "0.6");
 	amazonLink.hover(
 		function () {
 			$(this).css("opacity", "1.0");
