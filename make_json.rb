@@ -10,7 +10,6 @@ def makeDiff(a, b)
 	d = Diff.new(a, b)
 	diffs = d.compactdiffs
 
-	str = a
 	curr = 0
 	result = []
 	for diff in diffs
@@ -20,7 +19,7 @@ def makeDiff(a, b)
 			chars = line[2]
 
 			if index > curr
-				s = str[curr...index]
+				s = b[curr...index]
 				result << ['=', s]
 				curr = index
 			end
@@ -28,14 +27,14 @@ def makeDiff(a, b)
 			s = chars.map{|c| c.chr}.join
 			result << [type, s]
 
-			if type == '-'
-				curr = index + chars.length
+			if type == '+'
+				curr = curr + chars.length
 			end
 		end
 	end
 
-	if curr != str.length
-		result << ['=', str[curr..-1]]
+	if curr != b.length
+		result << ['=', b[curr..-1]]
 	end
 
 	return result
@@ -101,3 +100,5 @@ def makeWords(diffArr)
 	return wordQueue
 
 end
+
+#puts makeDiff('foo bxazr bazzle', 'foo bxar barzle
