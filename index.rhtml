@@ -31,7 +31,7 @@ cgi = CGI.new
 if cgi.has_key?('i') and cgi.has_key?('c') then
 %>
 			<script type="text/javascript">
-				searchString = <%= JSON.generate(makeWords(makeDiff(cgi['i'], cgi['c']))) %>;
+				searchString = <%= JSON.generate(makeWordDiff(cgi['i'], cgi['c'])) %>;
 			</script>
 			<form action="http://www.google.com/search" method="get">
 				<div>

@@ -63,7 +63,7 @@ def checkDifference(diff)
 	unchanged = totals['=']
 	changed = totals['+'] + totals['-']
 
-	return (changed > unchanged)
+	return (changed > unchanged * 4)
 end
 
 def splitWords(diffArr)
