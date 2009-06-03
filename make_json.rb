@@ -50,6 +50,22 @@ def makeDiff(a, b)
 	return result
 end
 
+def checkDifference(diff)
+
+	totals = {'=' => 0, '+' => 0, '-' => 0}
+
+	for line in diff
+		type = line[0]
+		str = line[1]
+		totals[type] += str.length
+	end
+
+	unchanged = totals['=']
+	changed = totals['+'] + totals['-']
+
+	return (changed > unchanged)
+end
+
 def splitWords(diffArr)
 	newArr = []
 	for delta in diffArr
@@ -108,5 +124,17 @@ def makeWords(diffArr)
 	wordQueue << [prefix, firstTry, secondTry]
 
 	return wordQueue
+
+end
+
+def makeWordDiff(a, b)
+
+	diff = makeDiff(a, b)
+
+	if checkDifference(diff)
+		return [['', a, b]]
+	else
+		return makeWords(diff)
+	end
 
 end
