@@ -6,55 +6,61 @@ class TestMakeDiffs < Test::Unit::TestCase
 
 	def test_words
 
-		result = makeWords(makeDiff('abc', 'abc'))
+		result = makeWordDiff('abc', 'abc')
 		assert_equal([['abc', '', '']], result)
 
-		result = makeWords(makeDiff('abc', 'def'))
+		result = makeWordDiff('abc', 'def')
 		assert_equal([['', 'abc', 'def']], result)
 
-		result = makeWords(makeDiff('abc', 'aec'))
+		result = makeWordDiff('abc', 'aec')
 		assert_equal([['a', 'bc', 'ec']], result)
 
-		result = makeWords(makeDiff('abc', 'xbc'))
+		result = makeWordDiff('abc', 'xbc')
 		assert_equal([['', 'abc', 'xbc']], result)
 
-		result = makeWords(makeDiff('abc', 'abd'))
+		result = makeWordDiff('abc', 'abd')
 		assert_equal([['ab', 'c', 'd']], result)
 
-		result = makeWords(makeDiff('abc def', 'abc dxf'))
+		result = makeWordDiff('abc def', 'abc dxf')
 		assert_equal([['abc', '', ''], [' d', 'ef', 'xf']], result)
 
-		result = makeWords(makeDiff('abc def', 'abc xyz'))
+		result = makeWordDiff('abc def', 'abc xyz')
 		#assert_equal([['abc', '', ''], ['', 'def', 'xyz']], result)
 
-		result = makeWords(makeDiff('foo bar baz', 'foo bar'))
+		result = makeWordDiff('foo bar baz', 'foo bar')
 		assert_equal([['foo', '', ''], [' bar', '', ''], ['', ' baz', '']], result)
 
-		result = makeWords(makeDiff('foo bar', 'foo bar baz'))
+		result = makeWordDiff('foo bar', 'foo bar baz')
 		assert_equal([['foo', '', ''], [' bar', '', ''], ['', '', ' baz']], result)
 
-		result = makeWords(makeDiff('foo bar', 'foobar'))
+		result = makeWordDiff('foo bar', 'foobar')
 		assert_equal([['foo', '', ''], ['', ' bar', 'bar']], result)
 
-		result = makeWords(makeDiff('foobar', 'foo bar'))
+		result = makeWordDiff('foobar', 'foo bar')
 		assert_equal([['foo', '', ''], ['', 'bar', ' bar']], result)
 
 	end
 
 	def test_regressions
 
-		result = makeWords(makeDiff('lunsderkov', 'lunderskov'))
+		result = makeWordDiff('lunsderkov', 'lunderskov')
 		assert_equal([['lun', 'sderkov', 'derskov']], result)
 
-		result = makeWords(makeDiff('foo bar baz bazzle boz', 'foo ber baz dazie boz'))
+		result = makeWordDiff('foo bar baz bazzle boz', 'foo ber baz dazie boz')
 		#assert_equal([['foo', '', ''], [' b', 'ar', 'er'], [' baz', '', ''], [' ', 'bazzle', 'dazie'], [' boz', '', '']], result)
 
-		result = makeWords(makeDiff('foo bxazr bazzle', 'foo bxar barzle'))
+		result = makeWordDiff('foo bxazr bazzle', 'foo bxar barzle')
 		assert_equal([['foo', '', ''], [' bxa', 'zr', 'r'], [' ba', 'zzle', 'rzle']], result)
 
 	end
 
 	def test_difference_detection
+
+		result = makeWordDiff('abc', 'aef')
+		assert_equal([['a', 'bc', 'ef']], result)
+
+		result = makeWordDiff('Here is a sentence and stuff', 'Herg ig g sentencg ang some g g g gs')
+		assert_not_equal([['', 'Here is a sentence and stuff', 'Herg ig g sentencg ang some g g g gs']], result)
 
 		result = makeWordDiff('Here is a sentence and stuff', 'Now something very different with a few similar letters')
 		assert_equal([['', 'Here is a sentence and stuff', 'Now something very different with a few similar letters']], result)
