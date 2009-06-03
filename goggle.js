@@ -15,7 +15,7 @@ $(document).ready(function() {
 			// Throw up a box with that url
 			$(".output").empty().append($('<input readonly="readonly" value="' + href + '" size="50" class="url" >'));
 			$(".output input.url").focus().select();
-			$(".infobox").text("Now use the link below for great justice.");
+			$(".infobox .text").text("Now use the link below for great justice.");
 			return false;
 		});
 	} else {
