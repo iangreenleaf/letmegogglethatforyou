@@ -19,6 +19,7 @@ def makeDiff(a, b)
 			index = line[1]
 			chars = line[2]
 
+			# TODO remove this duplication
 			if type == '+' and index > bcurr
 				s = b[bcurr...index]
 				result << ['=', s]
