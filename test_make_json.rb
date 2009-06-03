@@ -2,12 +2,7 @@ require "make_json"
 require "test/unit"
 
 
-class TestSimpleNumber < Test::Unit::TestCase
-
-	def test_simple
-		assert_equal(4, 2+2)
-		assert_equal(6, 6)
-	end
+class TestMakeDiffs < Test::Unit::TestCase
 
 	def test_words
 
@@ -67,4 +62,3 @@ class TestSimpleNumber < Test::Unit::TestCase
 	end
 
 end
-
