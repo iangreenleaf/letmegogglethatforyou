@@ -61,7 +61,7 @@ class TestSimpleNumber < Test::Unit::TestCase
 
 	def test_difference_detection
 
-		result = makeWords(makeDiff('Here is a sentence and stuff', 'Now something very different with a few similar letters'))
+		result = makeWordDiff('Here is a sentence and stuff', 'Now something very different with a few similar letters')
 		assert_equal([['', 'Here is a sentence and stuff', 'Now something very different with a few similar letters']], result)
 
 	end
