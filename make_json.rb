@@ -55,15 +55,16 @@ def checkDifference(diff)
 	totals = {'=' => 0, '+' => 0, '-' => 0}
 
 	for line in diff
-		type = line[0]
-		str = line[1]
-		totals[type] += str.length
+		totals['='] += line[0].length
+		totals['-'] += line[1].length
+		totals['+'] += line[2].length
 	end
 
 	unchanged = totals['=']
 	changed = totals['+'] + totals['-']
 
-	return (changed > unchanged * 4)
+	ratio = 1.0 * unchanged / ((changed / 2) + unchanged)
+	return (ratio < 0.2)
 end
 
 def splitWords(diffArr)
@@ -130,10 +131,12 @@ end
 def makeWordDiff(a, b)
 
 	diff = makeDiff(a, b)
+	diff = makeWords(diff)
 
 	if checkDifference(diff)
 		return [['', a, b]]
 	else
+		return diff
 		return makeWords(diff)
 	end
 
