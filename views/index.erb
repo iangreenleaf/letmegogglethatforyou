@@ -1,17 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
-<%
-ENV['GEM_PATH'] = '/home/youngian/.gem/ruby/1.8:/usr/lib/ruby/gems/1.8'
-require 'rubygems'
-require 'json'
-require 'make_json'
-require 'cgi'
-%>
 <html>
 	<head>
 		<meta content='text/html;charset=UTF-8' http-equiv='content-type'>
 		<title>Let me "goggle" that for you</title>
-		<link href="goggle.css" rel="stylesheet" type="text/css">
+		<link href="css/goggle.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="goggle.js"></script>
 
@@ -27,8 +20,7 @@ require 'cgi'
 			<div class="query">
 			<img id="cursor" src="cursor.png" style="display: none;" >
 <%
-cgi = CGI.new
-if cgi.has_key?('i') and cgi.has_key?('c') then
+if @diff
 %>
 			<script type="text/javascript">
 				searchString = <%= JSON.generate(makeWordDiff(cgi['i'], cgi['c'])) %>;
