@@ -1,6 +1,4 @@
-#!/usr/bin/ruby
-
-require 'diff'
+require './diff'
 
 def makeDiff(a, b)
 	# For some reason we need to make copies here or Diff panics
