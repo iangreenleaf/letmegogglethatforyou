@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic);
+
 /* Center most stuff */
 .main {
 	text-align: center;
@@ -48,8 +50,8 @@ table td {
 	height: 87px;
 	margin: auto;
 	margin-top: 2em;
-	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
-	font-size: 1.10em;
+	font-family: "Sorts Mill Goudy", Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
+	font-size: 1.2em;
 	/* This rule is for vertical centering */
 	display: table;
 }
