@@ -123,7 +123,7 @@ input.url {
 /* The "About" section */
 .credits {
 	margin-top: 2em;
-	font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
+	font-family: "Sorts Mill Goudy", Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;
 	border-top: 1px solid #DDD;
 }
 /* IE6 has some horrible non-aliasing happening, so just skip down the stack */
