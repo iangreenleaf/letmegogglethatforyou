@@ -2,7 +2,7 @@ require "make_json"
 require "test/unit"
 
 
-class TestMakeDiffs < Test::Unit::TestCase
+class DiffTest < Test::Unit::TestCase
 
 	def test_words
 
