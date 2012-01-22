@@ -11,7 +11,7 @@ $(document).ready(function() {
 				queryString += '&l=1';
 			}
 			// Build the whole URL
-			href = 'http://letmegogglethatforyou.com?' + queryString;
+			href = 'http://' + location.host + '?' + queryString;
 			// Throw up a box with that url
 			$(".output").empty().append($('<input readonly="readonly" value="' + href + '" size="50" class="url" >'));
 			$(".output input.url").focus().select();
